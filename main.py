@@ -15,3 +15,7 @@ def main():
     FramePerSec = pygame.time.Clock()
     displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("PyFight")
+
+
+if __name__ == '__main__':
+    main()
