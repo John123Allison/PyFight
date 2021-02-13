@@ -1,6 +1,6 @@
 import pygame
 import pygame.locals
-from .player import Player
+from player import Player
 
 HEIGHT = 450
 WIDTH = 400
