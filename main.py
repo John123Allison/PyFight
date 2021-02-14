@@ -47,7 +47,9 @@ while True:
             SysFont.exit()
         if event.type == KEYDOWN:
             if event.key == K_SPACE:
-                player_obj.jump()
+                # check if in collision with platform
+                if player_obj.check_collision(platform_group):
+                    player_obj.jump()
 
     # Handle player movement
     player_obj.move()

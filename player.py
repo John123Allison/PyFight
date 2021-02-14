@@ -49,7 +49,9 @@ class Player(pygame.sprite.Sprite):
         if hits:
             self.pos.y = hits[0].rect.top + 1
             self.vel.y = 0
+            return True
+        else:
+            return False
 
     def jump(self):
-        if self.vel.y >= 0: # this only works while going up - FIXME
-            self.vel.y = -15
+        self.vel.y = -15
