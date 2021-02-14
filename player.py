@@ -1,4 +1,4 @@
-from constants import ACC, FRIC, WIDTH
+from constants import ACC, FRIC, GRAV, WIDTH
 import pygame
 from pygame.constants import K_LEFT, K_RIGHT
 
@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def move(self):
-        self.acc = vec(0, 0)
+        self.acc = vec(0, GRAV)
 
         pressed_keys = pygame.key.get_pressed()
 
