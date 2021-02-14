@@ -1,14 +1,9 @@
+from constants import FPS, HEIGHT, WIDTH
 import pygame
 from pygame.constants import QUIT
 from pygame.font import SysFont
 import pygame.locals
 from player import Player
-
-HEIGHT = 450
-WIDTH = 400
-ACC = 0.5
-FRIC = -0.12
-FPS = 60
 
 
 class Platform(pygame.sprite.Sprite):
@@ -23,7 +18,6 @@ def main():
     # Setup stuff
     # Reference: https://coderslegacy.com/python/pygame-platformer-game-development/
     pygame.init()
-    vec = pygame.math.Vector2  # 2 for two dimensional
 
     FramePerSec = pygame.time.Clock()
     displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -46,6 +40,9 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 SysFont.exit()
+
+        # Handle player movement
+        player.move()
 
         displaysurface.fill((0, 0, 0))
 
