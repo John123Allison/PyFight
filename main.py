@@ -1,6 +1,6 @@
 from constants import FPS, HEIGHT, WIDTH
 import pygame
-from pygame.constants import QUIT
+from pygame.constants import KEYDOWN, K_SPACE, QUIT
 from pygame.font import SysFont
 import pygame.locals
 from player import Player
@@ -45,6 +45,9 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             SysFont.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_SPACE:
+                player_obj.jump()
 
     # Handle player movement
     player_obj.move()

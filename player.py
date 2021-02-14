@@ -1,6 +1,6 @@
 from constants import ACC, FRIC, GRAV, WIDTH
 import pygame
-from pygame.constants import K_LEFT, K_RIGHT
+from pygame.constants import K_LEFT, K_RIGHT, K_SPACE
 
 vec = pygame.Vector2
 
@@ -49,3 +49,7 @@ class Player(pygame.sprite.Sprite):
         if hits:
             self.pos.y = hits[0].rect.top + 1
             self.vel.y = 0
+
+    def jump(self):
+        if self.vel.y >= 0: # this only works while going up - FIXME
+            self.vel.y = -15
