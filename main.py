@@ -14,44 +14,46 @@ class Platform(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect(center=(WIDTH/2, HEIGHT - 10))
 
 
-def main():
-    # Setup stuff
-    # Reference: https://coderslegacy.com/python/pygame-platformer-game-development/
-    pygame.init()
+# Setup stuff
+# Reference: https://coderslegacy.com/python/pygame-platformer-game-development/
+pygame.init()
 
-    FramePerSec = pygame.time.Clock()
-    displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("PyFight")
+FramePerSec = pygame.time.Clock()
+displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("PyFight")
 
-    # instantiate player and platform
-    player = Player()
-    platform_test = Platform()
+# instantiate player and platform
+player_obj = Player()
+platform_test = Platform()
 
-    # Create sprite groups
-    # TODO make this not global lol
-    all_sprites = pygame.sprite.Group()
-    all_sprites.add(player)
-    all_sprites.add(platform_test)
+# Create sprite groups
+# TODO make this not global lol
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player_obj)
+all_sprites.add(platform_test)
 
-    ### MAIN GAME LOOP ###
-    while True:
-        for event in pygame.event.get():
-            # Handle quitting the game
-            if event.type == QUIT:
-                pygame.quit()
-                SysFont.exit()
+player_group = pygame.sprite.Group()
+player_group.add(player_obj)
 
-        # Handle player movement
-        player.move()
+platform_group = pygame.sprite.Group()
+platform_group.add(platform_test)
 
-        displaysurface.fill((0, 0, 0))
+### MAIN GAME LOOP ###
+while True:
+    for event in pygame.event.get():
+        # Handle quitting the game
+        if event.type == QUIT:
+            pygame.quit()
+            SysFont.exit()
 
-        for entity in all_sprites:
-            displaysurface.blit(entity.surf, entity.rect)
+    # Handle player movement
+    player_obj.move()
+    player_obj.check_collision(platform_group)
 
-        pygame.display.update()
-        FramePerSec.tick(FPS)
+    displaysurface.fill((0, 0, 0))
 
+    for entity in all_sprites:
+        displaysurface.blit(entity.surf, entity.rect)
 
-if __name__ == '__main__':
-    main()
+    pygame.display.update()
+    FramePerSec.tick(FPS)

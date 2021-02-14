@@ -22,6 +22,9 @@ class Player(pygame.sprite.Sprite):
         self.acc = vec(0, 0)
 
     def move(self):
+        """
+        Handle player movement (gravity as well)
+        """
         self.acc = vec(0, GRAV)
 
         pressed_keys = pygame.key.get_pressed()
@@ -36,3 +39,13 @@ class Player(pygame.sprite.Sprite):
         self.pos += self.vel + 0.5 * self.acc
 
         self.rect.midbottom = self.pos
+
+    def check_collision(self, group):
+        """
+        Check for collision with another object's rect
+        TODO Refine hitboxes
+        """
+        hits = pygame.sprite.spritecollide(self, group, False)
+        if hits:
+            self.pos.y = hits[0].rect.top + 1
+            self.vel.y = 0
